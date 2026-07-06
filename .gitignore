@@ -1,2 +1,6 @@
 .idea/
 __pycache__/
+httpx_*
+tcp_*
+websocket_*
+example_*
