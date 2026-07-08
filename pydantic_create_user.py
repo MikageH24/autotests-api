@@ -24,7 +24,7 @@ class CreateUserRequestSchema(BaseModel):
     middle_name: str = Field(alias="middleName")
 
 
-class CreateUserResponseSchema(UserSchema):
+class CreateUserResponseSchema(BaseModel):
     """
     Модель ответа на создание пользователя
     """
