@@ -62,12 +62,12 @@ def assert_get_courses_response(
 
 def assert_create_course_response(response: CreateCourseResponseSchema, request: CreateCourseRequestSchema):
     """
-        Проверяет, что ответ на создание курса соответствует данным из запроса.
+    Проверяет, что ответ на создание курса соответствует данным из запроса.
 
-        :param request: Исходный запрос на обновление курса.
-        :param response: Ответ API с обновленными данными курса.
-        :raises AssertionError: Если хотя бы одно поле не совпадает.
-        """
+    :param request: Исходный запрос на создание курса.
+    :param response: Ответ API с данными курса.
+    :raises AssertionError: Если хотя бы одно поле не совпадает.
+    """
     assert_equal(response.course.title, request.title, "title")
     assert_equal(response.course.max_score, request.max_score, "max_score")
     assert_equal(response.course.min_score, request.min_score, "min_score")
