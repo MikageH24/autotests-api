@@ -2,7 +2,8 @@ from httpx import Response
 
 from clients.api_client import APIClient
 from clients.courses.courses_schema import (GetCoursesQuerySchema, CreateCourseRequestSchema,
-                                            UpdateCourseResponseSchema, CreateCourseResponseSchema)
+                                            UpdateCourseResponseSchema, CreateCourseResponseSchema,
+                                            UpdateCourseRequestSchema)
 from clients.private_http_builder import AuthenticationUserSchema, get_private_http_client
 
 
@@ -39,12 +40,12 @@ class CoursesClient(APIClient):
         """
         return self.post("/api/v1/courses", json=request.model_dump(by_alias=True))
 
-    def update_course_api(self, course_id: str, request: UpdateCourseResponseSchema) -> Response:
+    def update_course_api(self, course_id: str, request: UpdateCourseRequestSchema) -> Response:
         """
         Метод обновления курса.
 
         :param course_id: Идентификатор курса.
-        :param request: Модель UpdateCourseResponseSchema с title, max_score, min_score, description, estimated_time.
+        :param request: Модель UpdateCourseRequestSchema с title, max_score, min_score, description, estimated_time.
         :return: Ответ от сервера в виде объекта httpx.Response
         """
         return self.patch(f"/api/v1/courses/{course_id}", json=request.model_dump(by_alias=True))
