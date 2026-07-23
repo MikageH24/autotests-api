@@ -1,5 +1,5 @@
 from clients.users.users_schema import GetUserResponseSchema, UpdateUserRequestSchema
-
+import allure
 from httpx import Response
 
 from clients.api_client import APIClient
@@ -11,6 +11,7 @@ class PrivateUsersClient(APIClient):
     Клиент для работы с /api/v1/users
     """
 
+    @allure.step("Get user me")
     def get_user_me_api(self) -> Response:
         """
         Метод получения текущего пользователя.
@@ -19,6 +20,7 @@ class PrivateUsersClient(APIClient):
         """
         return self.get("/api/v1/users/me")
 
+    @allure.step("Get user by id {user_id}")
     def get_user_api(self, user_id: str) -> Response:
         """
         Метод получения пользователя по идентификатору.
@@ -28,6 +30,7 @@ class PrivateUsersClient(APIClient):
         """
         return self.get(f"/api/v1/users/{user_id}")
 
+    @allure.step("Update user by id {user_id}")
     def update_user_api(self, user_id: str, request: UpdateUserRequestSchema) -> Response:
         """
         Метод обновления пользователя по идентификатору.
@@ -38,6 +41,7 @@ class PrivateUsersClient(APIClient):
         """
         return self.patch(f"/api/v1/users/{user_id}", json=request.model_dump(by_alias=True))
 
+    @allure.step("Delete user by id {user_id}")
     def delete_user_api(self, user_id: str) -> Response:
         """
         Метод удаления пользователя по идентификатору.
